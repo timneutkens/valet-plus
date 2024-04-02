@@ -72,7 +72,7 @@ class Mailhog extends AbstractService
     public function install(string $tld = 'test'): void
     {
         $this->brew->ensureInstalled(static::SERVICE_NAME);
-        $this->site->proxyCreate('mailhog', 'http://127.0.0.1:8025');
+        $this->site->proxyCreate('mailhog', 'http://127.0.0.1:8025', true);
         $this->setEnabled(static::STATE_ENABLED);
         $this->restart();
     }

@@ -246,7 +246,7 @@ class Elasticsearch extends AbstractDockerService
         }
 
         $this->restart($version);
-        $this->site->proxyCreate('elasticsearch', 'http://127.0.0.1:9200');
+        $this->site->proxyCreate('elasticsearch', 'http://127.0.0.1:9200', true);
     }
 
     /**
