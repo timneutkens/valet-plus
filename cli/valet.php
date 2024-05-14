@@ -569,9 +569,22 @@ if (is_dir(VALET_HOME_PATH)) {
                 return;
             }
 
+            if ($run === 'uninstall') {
+                if (!$defaults['yes']) {
+                    $question = new ConfirmationQuestion('Are you sure you want to remove mysql? [y/N] ', false);
+                    if (!$helper->ask($input, $output, $question)) {
+                        return;
+                    }
+                }
+
+                Mysql::uninstall();
+
+                return;
+            }
+
             throw new RuntimeException('Command not found');
         })
-        ->descriptions('Database commands (list/ls, create, drop, reset, import, reimport, export/dump, pwd/password)');
+        ->descriptions('Database commands (list/ls, create, drop, reset, import, reimport, export/dump, pwd/password, uninstall)');
 
     /**
      * Elasticsearch/opensearch services.
