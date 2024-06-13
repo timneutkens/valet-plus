@@ -32,6 +32,7 @@ innodb_log_file_size=25M
 interactive_timeout=3600
 max_connect_errors=1000000
 thread_cache_size=1024
+innodb_strict_mode=0
 
 [mysqld_safe]
 open_files_limit=262144
