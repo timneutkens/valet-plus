@@ -31,7 +31,7 @@ require_once __DIR__ . '/includes/events.php';
 $laravelValetName = $app->getName();
 $laravelValetVersion = $app->getVersion();
 $valetPlusName = 'Valet+';
-$valetPlusVersion = '3.0.2';
+$valetPlusVersion = '3.0.3';
 
 $app->setVersion($laravelValetName . ' ' . $laravelValetVersion);
 $app->setName(' ' . $valetPlusName . ' ' . $valetPlusVersion . "\n");
