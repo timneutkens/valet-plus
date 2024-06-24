@@ -122,6 +122,7 @@ class Elasticsearch extends AbstractDockerService
      *
      * @param string $version
      * @param string $tld
+     * @return bool
      */
     public function useVersion($version = self::ES_DEFAULT_VERSION, $tld = 'test')
     {
@@ -139,7 +140,7 @@ class Elasticsearch extends AbstractDockerService
         if ($version === $currentVersion) {
             info('Already on this version');
 
-            return;
+            return false;
         }
         if ($currentVersion) {
             // Stop current version.
@@ -147,6 +148,7 @@ class Elasticsearch extends AbstractDockerService
         }
 
         $this->install($version, $tld);
+        return true;
     }
 
 

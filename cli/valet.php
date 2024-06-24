@@ -607,10 +607,11 @@ if (is_dir(VALET_HOME_PATH)) {
                 throw new RuntimeException(sprintf('Not enough arguments (missing: "mode"). Available modes: %s', implode(', ', $modes)));
             }
 
+            $restart = true;
             switch ($mode) {
                 case 'install':
                 case 'use':
-                    Elasticsearch::useVersion($targetVersion, Configuration::read()['tld']);
+                    $restart = Elasticsearch::useVersion($targetVersion, Configuration::read()['tld']);
 
                     break;
                 case 'on':
@@ -629,8 +630,10 @@ if (is_dir(VALET_HOME_PATH)) {
                     break;
             }
 
-            PhpFpm::restart();
-            Nginx::restart();
+            if ($restart) {
+                PhpFpm::restart();
+                Nginx::restart();
+            }
         })
         ->descriptions(
                 'Enable/disable/switch Elasticsearch. ' .
