@@ -18,11 +18,11 @@ class Elasticsearch extends AbstractDockerService
     protected const NGINX_CONFIGURATION_PATH = VALET_HOME_PATH . '/Nginx/elasticsearch.conf';
 
     /** @var string */
-    protected const ES_DEFAULT_VERSION = 'opensearch'; // which is v2 in Brew, @todo; maybe support v1.2 using docker?
+    protected const ES_DEFAULT_VERSION = 'opensearch2';
     /** @var string[] */
-    protected const ES_SUPPORTED_VERSIONS = ['opensearch', 'elasticsearch6', 'elasticsearch7', 'elasticsearch8'];
+    protected const ES_SUPPORTED_VERSIONS = ['opensearch2', 'elasticsearch6', 'elasticsearch7', 'elasticsearch8'];
     /** @var string[] */
-    protected const ES_DOCKER_VERSIONS = ['elasticsearch6', 'elasticsearch7', 'elasticsearch8'];
+    protected const ES_DOCKER_VERSIONS = ['opensearch2', 'elasticsearch6', 'elasticsearch7', 'elasticsearch8'];
     /** @var string[] */
     protected const ES_EOL_VERSIONS = ['elasticsearch@6'];
 

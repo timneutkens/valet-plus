@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  opensearch:
+    image: opensearchproject/opensearch:2.12.0
+    container_name: unspsc-opensearch
+    environment:
+      plugins.security.disabled: true
+      discovery.type: single-node
+      node.name: opensearch
+      OPENSEARCH_JAVA_OPTS: -Xms512m -Xmx512m
+      OPENSEARCH_INITIAL_ADMIN_PASSWORD: Som3F4ncyPWD!
+
+    volumes:
+      - opensearch-data:/usr/share/opensearch/data
+    ports:
+      - 9200:9200
+      - 9600:9600
+
+volumes:
+  opensearch-data:
+    driver: local
