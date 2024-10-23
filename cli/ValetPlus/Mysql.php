@@ -185,7 +185,8 @@ class Mysql
     {
         $version = $this->installedVersion() ?: self::MYSQL_DEFAULT_VERSION;
         info("Restarting {$version}...");
-        $this->cli->quietlyAsUser('brew services restart ' . $version);
+        $this->cli->quietly('brew services stop ' . $version);
+        $this->cli->quietlyAsUser('brew services start ' . $version);
     }
 
     /**
