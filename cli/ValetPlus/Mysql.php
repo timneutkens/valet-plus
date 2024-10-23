@@ -282,7 +282,7 @@ class Mysql
 
         // Create connection
         $rootPwd    = ($withoutRootPwd ? null : $this->getConfigRootPassword());
-        $this->link = new mysqli('localhost', 'root', $rootPwd);
+        $this->link = new mysqli('127.0.0.1', 'root', $rootPwd);
 
         // Check connection
         if ($this->link->connect_error) {
