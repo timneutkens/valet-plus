@@ -149,11 +149,9 @@ class Mysql
      */
     public function stop()
     {
-        $version = $this->installedVersion();
+        $version = $this->installedVersion() ?: self::MYSQL_DEFAULT_VERSION;
         info("Stopping {$version}...");
-
-        $this->cli->quietly('sudo brew services stop ' . $version);
-        $this->cli->quietlyAsUser('brew services stop ' . $version);
+        $this->cli->quietly('brew services stop ' . $version);
     }
 
     /**
