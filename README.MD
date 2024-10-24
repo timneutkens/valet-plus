@@ -58,7 +58,7 @@ Here are a few key differences compared to the original Valet:
 - Xdebug (on/off mode)
 - Memcache (on/off mode)
 - Elasticsearch v6, v7, v8 (on/off mode) using Docker 
-- Opensearch (on/off mode)
+- Opensearch v2 (on/off mode) using Docker
 - ~~Ioncube~~
 - Rewrite/unrewrite public domain to local environment
 - ~~DevTools~~
