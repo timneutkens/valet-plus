@@ -1,5 +1,8 @@
 <p align="center"><img width="200" src="images/logo.png"></p>
 
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/weprovide/valet-plus.svg?style=flat)](https://packagist.org/packages/weprovide/valet-plus)
+[![Downloads on Packagist](https://img.shields.io/packagist/dt/weprovide/valet-plus.svg?style=flat)](https://packagist.org/packages/weprovide/valet-plus)
+
 ## Introduction
 
 Valet+ is a development environment for macOS. No Vagrant, no Docker, no `/etc/hosts` file. This project uses 
