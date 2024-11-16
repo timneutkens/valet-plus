@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace WeProvide\ValetPlus;
 
 use DomainException;
+use Exception;
 use mysqli;
 use Valet\Brew;
 use Valet\CommandLine;
@@ -273,17 +274,21 @@ class Mysql
      */
     public function getConnection($withoutRootPwd = false)
     {
-        // if connection already exists return it early.
+        // If connection already exists return it early.
         if ($this->link) {
             return $this->link;
         }
 
         // Create connection
-        $rootPwd    = ($withoutRootPwd ? null : $this->getConfigRootPassword());
-        $this->link = new mysqli('127.0.0.1', 'root', $rootPwd);
+        $rootPwd = ($withoutRootPwd ? null : $this->getConfigRootPassword());
+        try {
+            $this->link = new mysqli('127.0.0.1', 'root', $rootPwd);
+        } catch (Exception $e) {
+            $this->link = null;
+        }
 
         // Check connection
-        if ($this->link->connect_error) {
+        if (!$this->link || $this->link->connect_error) {
             warning('Failed to connect to database');
 
             return false;
