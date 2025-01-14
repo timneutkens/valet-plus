@@ -27,7 +27,7 @@ class Mysql
     private const MYSQL_DATA_DIR = 'var/mysql';
     private const MYSQL_ROOT_PASSWORD = 'root';
     private const MYSQL_DEFAULT_VERSION = 'mysql@5.7';
-    private const MYSQL_SUPPORTED_VERSIONS = ['mysql', 'mysql@8.0', 'mysql@5.7', 'mariadb'];
+    private const MYSQL_SUPPORTED_VERSIONS = ['mysql@8.4', 'mysql@8.0', 'mysql@5.7', 'mariadb'];
 
     /** @var Brew */
     protected $brew;
@@ -116,7 +116,7 @@ class Mysql
         if (!in_array($type, $this->getSupportedVersions())) {
             $supportedVersionsString = implode(', ', $this->getSupportedVersions());
             throw new DomainException(
-                sprintf('Invalid Mysql type given. Available: %s', $supportedVersionsString)
+                sprintf('Invalid DBMS type given. Available: %s', $supportedVersionsString)
             );
         }
     }
@@ -175,6 +175,14 @@ class Mysql
             BREW_PREFIX . '/' . static::MYSQL_CONF,
             $contents
         );
+
+        // Store installed DBMS version
+        $config = $this->configuration->read();
+        if (!isset($config['mysql'])) {
+            $config['mysql'] = [];
+        }
+        $config['mysql']['version'] = $type;
+        $this->configuration->write($config);
     }
 
     /**
@@ -211,7 +219,7 @@ class Mysql
                 break;
 
             case 'mysql@8.0':
-            case 'mysql':
+            case 'mysql@8.4':
                 $retval = $this->query(
                     "ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '" . $newPwd . "';",
                     false,
@@ -253,6 +261,7 @@ class Mysql
             $this->brew->uninstallFormula($version);
         }
 
+        $this->resetConfigRootPassword();
         $this->removeConfiguration();
         if (file_exists(BREW_PREFIX . '/' . static::MYSQL_DATA_DIR)) {
             $this->files->rmDirAndContents(BREW_PREFIX . '/' . static::MYSQL_DATA_DIR);

@@ -29,9 +29,9 @@ brew link php@8.1 --force
 brew services restart php@8.1
 ```
 
-Install Valet+ 3.x-dev with composer:
+Install Valet+ 3 with composer:
 ```shell
-composer global require weprovide/valet-plus:3.x-dev
+composer global require weprovide/valet-plus
 ```
 
 Finally, you may execute the Valet+ `install` command. This will configure and install Valet+, Nginx, DnsMasq and other
@@ -52,7 +52,7 @@ Here are a few key differences compared to the original Valet:
 
 - Nginx config optimization
 - PHP extensions (~~mcrypt~~, ~~intl~~, ~~opcache~~, yaml, apcu, ds, imagick)
-- MySQL (mysql@5.7, mysql@8.0, mysql@8.1, mariadb)
+- MySQL (mysql@5.7, mysql@8.0, mysql@8.4, mariadb)
   - DB commands (list, create, drop, reset, (re)import, export, ~~open~~)
 - Mailhog (on/off mode)
 - Varnish (on/off mode)
